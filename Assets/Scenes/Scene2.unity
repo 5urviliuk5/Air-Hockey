@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 89806630}
   - component: {fileID: 89806629}
   m_Layer: 0
-  m_Name: Player ScoreText
+  m_Name: PlayerScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 274597938}
   - component: {fileID: 274597937}
   m_Layer: 0
-  m_Name: Enemy Goal
+  m_Name: EnemyScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 611683311}
   - component: {fileID: 611683310}
   m_Layer: 0
-  m_Name: Enemy Score Text
+  m_Name: EnemyScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1215,6 +1215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6af083e10041ac4e9114042869a37a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerScoreText: {fileID: 89806629}
+  EnemyScoreText: {fileID: 611683310}
+  playerScore: 0
+  enemyScore: 0
 --- !u!1 &811284492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,7 +1806,7 @@ GameObject:
   - component: {fileID: 2026462191}
   - component: {fileID: 2026462190}
   m_Layer: 0
-  m_Name: Player Goal
+  m_Name: PlayerScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

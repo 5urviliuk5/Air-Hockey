@@ -7,8 +7,8 @@ public class Ball : MonoBehaviour
 {
     public TMP_Text PlayerScoreText;
     public TMP_Text EnemyScoreText;
-    private int PlayerScore = 0;
-    private int EnemyScore = 0;
+    public int playerScore = 0;
+    public int enemyScore = 0;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -18,16 +18,16 @@ public class Ball : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
-        if (other.gameObject.name.Contains("Player Score"))
+        if (other.gameObject.name.Contains("EnemyScore"))
         {
-            PlayerScore++;
-            PlayerScoreText.text = PlayerScore.ToString();
+            playerScore++;
+            PlayerScoreText.text = playerScore.ToString();
         }
 
-        if (other.gameObject.name.Contains("Enemy Score"))
+        if (other.gameObject.name.Contains("PlayerScore"))
         {
-            EnemyScore++;
-            EnemyScoreText.text = EnemyScore.ToString();
+            enemyScore++;
+            EnemyScoreText.text = enemyScore.ToString();
         }
     }
 }
