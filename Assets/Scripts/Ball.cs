@@ -12,22 +12,24 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name.Contains("Score"))
-        {
-            transform.position = Vector3.zero;
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        }
+
 
         if (other.gameObject.name.Contains("EnemyScore"))
         {
             playerScore++;
             PlayerScoreText.text = playerScore.ToString();
+
+            transform.position = Vector3.right;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
         if (other.gameObject.name.Contains("PlayerScore"))
         {
             enemyScore++;
             EnemyScoreText.text = enemyScore.ToString();
+
+            transform.position = Vector3.left;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 }

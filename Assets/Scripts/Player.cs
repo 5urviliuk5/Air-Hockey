@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    public float speed = 5;
         
     void Update()
     {
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
-        GetComponent<Rigidbody2D>().MovePosition(mousePos);
+        if (mousePos.x > 0)
+        {
+            mousePos.x = 0;
+        }
+
+        
+
+        var finalPosition = Vector3.MoveTowards(transform.position, mousePos, speed * Time.deltaTime);
+        GetComponent<Rigidbody2D>().MovePosition(finalPosition);
     }
 }
