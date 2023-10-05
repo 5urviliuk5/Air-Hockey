@@ -16,8 +16,6 @@ public class Player : MonoBehaviour
             mousePos.x = 0;
         }
 
-        
-
         var finalPosition = Vector3.MoveTowards(transform.position, mousePos, speed * Time.deltaTime);
         GetComponent<Rigidbody2D>().MovePosition(finalPosition);
     }
