@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     public int playerScore = 0;
     public int enemyScore = 0;
 
-    private void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.name.Contains("Score"))
         {
