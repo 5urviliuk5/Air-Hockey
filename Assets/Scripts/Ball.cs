@@ -14,6 +14,32 @@ public class Ball : MonoBehaviour
     public AudioSource goalSound;
     public AudioSource wallSound;
 
+    public float respawnCooldown;
+    float respawnTimer;
+
+    public Transform DeathPoint;
+    public bool shouldRespawn;
+
+    Vector3 respawnPosition;
+
+    private void Start()
+    {
+        respawnTimer = respawnCooldown;
+    }
+
+    void Update()
+    {
+        if (shouldRespawn)
+        {
+            respawnTimer -= Time.deltaTime;
+            if (respawnTimer <= 0)
+            {
+                transform.position = respawnPosition;
+                respawnTimer = respawnCooldown;
+                shouldRespawn = false;
+            }
+        }
+    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -24,8 +50,11 @@ public class Ball : MonoBehaviour
             playerScore++;
             PlayerScoreText.text = playerScore.ToString();
             goalSound.Play();
-            transform.position = Vector3.right;
+            respawnPosition = Vector3.right;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            transform.position = DeathPoint.position;
+            shouldRespawn = true;
         }
 
         if (other.gameObject.name.Contains("PlayerScore"))
@@ -33,8 +62,11 @@ public class Ball : MonoBehaviour
             enemyScore++;
             EnemyScoreText.text = enemyScore.ToString();
             goalSound.Play();
-            transform.position = Vector3.left;
+            respawnPosition = Vector3.left;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            transform.position = DeathPoint.position;
+            shouldRespawn = true;
         }
 
         if (other.gameObject.name.Contains("Wall"))
