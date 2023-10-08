@@ -1730,7 +1730,8 @@ MonoBehaviour:
   goalSound: {fileID: 1302463497}
   wallSound: {fileID: 1175891155}
   respawnCooldown: 3
-  DeathPoint: {fileID: 0}
+  DeathPoint: {fileID: 1500829792}
+  shouldRespawn: 0
 --- !u!1 &795351577
 GameObject:
   m_ObjectHideFlags: 0

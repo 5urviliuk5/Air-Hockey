@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 
 public class Ball : MonoBehaviour
 {
@@ -55,6 +56,11 @@ public class Ball : MonoBehaviour
 
             transform.position = DeathPoint.position;
             shouldRespawn = true;
+
+            if (playerScore >= 7)
+            {
+                SceneManager.LoadScene("Menu");
+            }
         }
 
         if (other.gameObject.name.Contains("PlayerScore"))
@@ -67,6 +73,11 @@ public class Ball : MonoBehaviour
 
             transform.position = DeathPoint.position;
             shouldRespawn = true;
+
+            if (enemyScore >= 7)
+            {
+                SceneManager.LoadScene("Menu");
+            }
         }
 
         if (other.gameObject.name.Contains("Wall"))
