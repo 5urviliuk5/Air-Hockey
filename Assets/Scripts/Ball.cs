@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using JetBrains.Annotations;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
@@ -20,6 +21,13 @@ public class Ball : MonoBehaviour
 
     public Transform DeathPoint;
     public bool shouldRespawn;
+
+    bool goalTextActive = false;
+    float goalTextTimer = 0f;
+    float goalTextDuration = 2.0f;
+
+    public TMP_Text playerGoalText;
+    public TMP_Text enemyGoalText;
 
     Vector3 respawnPosition;
 
@@ -40,6 +48,18 @@ public class Ball : MonoBehaviour
                 shouldRespawn = false;
             }
         }
+
+        if (goalTextActive)
+        {
+            goalTextTimer += Time.deltaTime;
+
+            if (goalTextTimer >= goalTextDuration)
+            {
+                playerGoalText.text = "";
+                enemyGoalText.text = "";
+                goalTextActive = false;
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -50,6 +70,11 @@ public class Ball : MonoBehaviour
         {
             playerScore++;
             PlayerScoreText.text = playerScore.ToString();
+
+            playerGoalText.text = "GOAL!";
+            goalTextActive = true;
+            goalTextTimer = 0f;
+
             goalSound.Play();
             respawnPosition = Vector3.right;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -67,6 +92,11 @@ public class Ball : MonoBehaviour
         {
             enemyScore++;
             EnemyScoreText.text = enemyScore.ToString();
+
+            enemyGoalText.text = "GOAL!";
+            goalTextActive = true;
+            goalTextTimer = 0f;
+
             goalSound.Play();
             respawnPosition = Vector3.left;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
